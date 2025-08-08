@@ -1,21 +1,24 @@
 let api;
 
+const walletName = "lace"; // または "eternl", "flint", "nami" など対応ウォレット名に応じて変更
+
 async function connectWallet() {
-  if (!window.cardano || !window.cardano.nami) {
-    alert("Nami Wallet not found.");
+  if (!window.cardano || !window.cardano[walletName]) {
+    alert(`${walletName} wallet not found.`);
     return;
   }
 
   try {
-    api = await window.cardano.nami.enable();
-    const addr = await api.getUsedAddresses();
-    console.log("Connected:", addr);
+    const api = await window.cardano[walletName].enable();
+    const addresses = await api.getUsedAddresses();
+    console.log("Connected:", addresses);
     alert("Wallet connected!");
   } catch (err) {
     console.error(err);
     alert("Failed to connect wallet.");
   }
 }
+
 
 async function sendTip() {
   if (!api) {
