@@ -1,6 +1,6 @@
 let api;
 
-const walletName = "lace"; // または "eternl", "flint", "nami" など対応ウォレット名に応じて変更
+const walletName = "eternl"; // または "eternl", "flint", "nami" など対応ウォレット名に応じて変更
 
 async function connectWallet() {
   if (!window.cardano || !window.cardano[walletName]) {
